@@ -6,10 +6,12 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+import com.hms.audit.Auditable;
+
 @Entity
 @Getter
 @Setter
-public class PharmacySale {
+public class PharmacySale extends Auditable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,5 +1,7 @@
 package com.hms.entity;
 
+import com.hms.audit.Auditable;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +10,7 @@ import lombok.Setter;
 @Table(name = "users")
 @Getter
 @Setter
-public class User {
+public class User extends Auditable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +28,7 @@ public class User {
 
     @Column(nullable = false)
     private Boolean enabled = true;
+    
+//    @Column(nullable = true)
+//    private boolean deleted = false;
 }

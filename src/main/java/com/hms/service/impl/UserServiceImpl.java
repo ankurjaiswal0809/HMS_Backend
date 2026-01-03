@@ -82,7 +82,8 @@ public class UserServiceImpl implements UserService {
         if (currentUser.getId().equals(userId)) {
             throw new RuntimeException("Admin cannot delete himself");
         }
-
+        //currentUser.setDeleted(true);
+        //userRepository.save(currentUser);
         userRepository.deleteById(userId);
     }
 
