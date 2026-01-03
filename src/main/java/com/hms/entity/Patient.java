@@ -1,5 +1,7 @@
 package com.hms.entity;
 
+import com.hms.audit.Auditable;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +9,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Patient {
+public class Patient extends Auditable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
