@@ -43,9 +43,10 @@ public class UserServiceImpl implements UserService {
         );
     }
 
+    
     @Override
     public List<UserResponse> getAllUsers() {
-        return userRepository.findAll().stream()
+        return userRepository.findAllByDeletedFalse().stream()
                 .map(u -> new UserResponse(
                         u.getId(),
                         u.getUsername(),
@@ -68,6 +69,8 @@ public class UserServiceImpl implements UserService {
         );
     }
 
+
+    
     @Override
     public void deleteUser(Long userId) {
 
@@ -77,14 +80,19 @@ public class UserServiceImpl implements UserService {
                 .getName();
 
         User currentUser = userRepository.findByUsername(currentUsername)
-                .orElseThrow();
+                .orElseThrow(() -> new RuntimeException("Current user not found"));
 
         if (currentUser.getId().equals(userId)) {
             throw new RuntimeException("Admin cannot delete himself");
         }
-        //currentUser.setDeleted(true);
-        //userRepository.save(currentUser);
-        userRepository.deleteById(userId);
+
+        User user = userRepository.findByIdAndDeletedFalse(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setDeleted(true);
+        user.setEnabled(false);
+
+        userRepository.save(user);
     }
 
 }

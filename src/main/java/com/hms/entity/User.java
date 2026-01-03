@@ -27,8 +27,8 @@ public class User extends Auditable{
     private String role;
 
     @Column(nullable = false)
-    private Boolean enabled = true;
+    private Boolean enabled = true;   
     
-//    @Column(nullable = true)
-//    private boolean deleted = false;
+ // 👇 Soft delete flag
+    private boolean deleted = false;
 }
