@@ -14,17 +14,17 @@ public class AdminBootstrap {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-//    @PostConstruct
-//    public void init() {
-//        if (userRepository.findByUsername("admin").isEmpty()) {
-//            User admin = new User();
-//            admin.setUsername("admin");
-//            admin.setPassword(passwordEncoder.encode("admin123"));
-//            admin.setRole("ADMIN");
-//            admin.setEnabled(true);
-//            userRepository.save(admin);
-//
-//            System.out.println("✅ ADMIN CREATED SUCCESSFULLY");
-//        }
-//    }
+    @PostConstruct
+    public void init() {
+        if (userRepository.findByUsername("admin").isEmpty()) {
+            User admin = new User();
+            admin.setUsername("admin");
+            admin.setPassword(passwordEncoder.encode("admin123"));
+            admin.setRole("ADMIN");
+            admin.setEnabled(true);
+            userRepository.save(admin);
+
+            System.out.println("✅ ADMIN CREATED SUCCESSFULLY");
+        }
+    }
 }
