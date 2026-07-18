@@ -6,10 +6,10 @@ spring:
     name: hospital-management-system
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
+    url: jdbc:mysql://localhost:3306/hms?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
     password: root
-    driver-class-name: org.postgresql.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
@@ -18,6 +18,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
 
   mail:
     host: smtp.gmail.com
@@ -25,8 +26,11 @@ spring:
     username: yourmail@gmail.com
     password: your_app_password
     properties:
-      mail.smtp.auth: true
-      mail.smtp.starttls.enable: true
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 jwt:
   secret: hms-secret-key-123456
